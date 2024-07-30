@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+</head>
+<style>
+    body {
+        height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<body>
+    <button id="sendButton">Send</button>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', () => {
+            fetch('https://coherent-rare-floss.glitch.me/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'encrypt' })
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            setTimeout(() => {
+                window.close();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
